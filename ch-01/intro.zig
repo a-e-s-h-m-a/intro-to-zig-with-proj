@@ -30,8 +30,15 @@ pub fn main() !void {
     // try stdout.print("{s}\n", .{bytes});
     // try stdout.flush();
     // 
+    
     // This is a string literal value:
     _ = "A literal value";
-    try stdout.print("{any}\n", .{@TypeOf("A literal value")});
+    try stdout.print("{any}\n", .{@TypeOf("A literal value")}); // *const [15:0]u8
+    try stdout.flush();
+    
+    // This is a string value being
+    // interpreted as a slice.
+    const str: []const u8 = "A string value";
+    try stdout.print("{any}\n", .{@TypeOf(str)}); // []const u8
     try stdout.flush();
 }
