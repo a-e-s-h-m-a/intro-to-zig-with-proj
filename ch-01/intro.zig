@@ -50,11 +50,18 @@ pub fn main() !void {
     // try stdout.print("\n", .{});
     // try stdout.flush();
     //
-    const string_object = "Ⱥ";
-    _ = try stdout.write("Bytes that represents the string object: ");
-    for (string_object) |char| {
-        try stdout.print("{X} ", .{char});
+    // const string_object = "Ⱥ";
+    // _ = try stdout.write("Bytes that represents the string object: ");
+    // for (string_object) |char| {
+    //     try stdout.print("{X} ", .{char});
+    // }
+    // try stdout.print("\n", .{});
+    // try stdout.flush(); // Bytes that represents the string object: C8 BA
+    
+    var utf8 = try std.unicode.Utf8View.init("アメリカ");
+    var iter = utf8.iterator();
+    while (iter.nextCodepointSlice()) |codepoint| {
+        try stdout.print("got codepoint {x}\n", .{codepoint});
     }
-    try stdout.print("\n", .{});
-    try stdout.flush(); // Bytes that represents the string object: C8 BA
+    try stdout.flush();
 }
