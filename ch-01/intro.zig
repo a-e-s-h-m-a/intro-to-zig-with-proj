@@ -7,5 +7,7 @@ pub fn main() void {
     const a = [_]u8{1,2,3};
     const b = [_]u8{4,5};
     const c = a ++ b;
-    std.debug.print("{any}", .{c});
+    std.debug.print("++ {any}\n", .{c});
+    const d = a ** 3;
+    std.debug.print("** {any}\n", .{d});
 }
