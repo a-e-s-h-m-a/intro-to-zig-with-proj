@@ -1,6 +1,9 @@
 const std = @import("std");
+var stdout_buffer: [1024]u8 = undefined;
+var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+const stdout = &stdout_writer.interface;
 
-pub fn main() void {
+pub fn main() !void {
     // const ns = [4]u8{48, 24, 12, 6};
     // const sl = ns[1..3];
     // std.debug.print("{d}\n", .{sl.len});
@@ -23,5 +26,7 @@ pub fn main() void {
     // const str = "This is an example of string literal in Zig";
     // std.debug.print("{d}\n", .{str.len});
     // 
-    
+    const bytes = [_]u8{0x48, 0x65, 0x6C, 0x6C, 0x6F};
+    try stdout.print("{s}\n", .{bytes});
+    try stdout.flush();
 }
