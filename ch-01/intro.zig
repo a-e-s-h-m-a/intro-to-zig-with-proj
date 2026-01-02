@@ -26,7 +26,12 @@ pub fn main() !void {
     // const str = "This is an example of string literal in Zig";
     // std.debug.print("{d}\n", .{str.len});
     // 
-    const bytes = [_]u8{0x48, 0x65, 0x6C, 0x6C, 0x6F};
-    try stdout.print("{s}\n", .{bytes});
+    // const bytes = [_]u8{0x48, 0x65, 0x6C, 0x6C, 0x6F};
+    // try stdout.print("{s}\n", .{bytes});
+    // try stdout.flush();
+    // 
+    // This is a string literal value:
+    _ = "A literal value";
+    try stdout.print("{any}\n", .{@TypeOf("A literal value")});
     try stdout.flush();
 }
