@@ -11,12 +11,17 @@ pub fn main() void {
     // const d = a ** 3;
     // std.debug.print("** {any}\n", .{d});
     // 
-    var y: i32 = 123;
-    const x = add_one: {
-        y += 1;
-        break :add_one y;
-    };
-    if (x == 124 and y == 124) {
-        std.debug.print("Hey!\n", .{});
-    }
+    // -- scope --
+    // var y: i32 = 123;
+    // const x = add_one: {
+    //     y += 1;
+    //     break :add_one y;
+    // };
+    // if (x == 124 and y == 124) {
+    //     std.debug.print("Hey!\n", .{});
+    // }
+    // const str = "This is an example of string literal in Zig";
+    // std.debug.print("{d}\n", .{str.len});
+    // 
+    
 }
