@@ -13,7 +13,7 @@ pub fn main() !void {
     // std.debug.print("++ {any}\n", .{c});
     // const d = a ** 3;
     // std.debug.print("** {any}\n", .{d});
-    // 
+    //
     // -- scope --
     // var y: i32 = 123;
     // const x = add_one: {
@@ -25,29 +25,36 @@ pub fn main() !void {
     // }
     // const str = "This is an example of string literal in Zig";
     // std.debug.print("{d}\n", .{str.len});
-    // 
+    //
     // const bytes = [_]u8{0x48, 0x65, 0x6C, 0x6C, 0x6F};
     // try stdout.print("{s}\n", .{bytes});
     // try stdout.flush();
-    // 
-    
+    //
+
     // // This is a string literal value:
     // _ = "A literal value";
     // try stdout.print("{any}\n", .{@TypeOf("A literal value")}); // *const [15:0]u8
     // try stdout.flush();
-    
+
     // // This is a string value being
     // // interpreted as a slice.
     // const str: []const u8 = "A string value";
     // try stdout.print("{any}\n", .{@TypeOf(str)}); // []const u8
     // try stdout.flush();
-    
-    const str = "This is a string";
-    try stdout.print("Bytes that represent the str:\n", .{});
-    for(str) |byte| {
-        try stdout.print("{X} ", .{byte});
+
+    // const str = "This is a string";
+    // try stdout.print("Bytes that represent the str:\n", .{});
+    // for(str) |byte| {
+    //     try stdout.print("{X} ", .{byte});
+    // }
+    // try stdout.print("\n", .{});
+    // try stdout.flush();
+    //
+    const string_object = "Ⱥ";
+    _ = try stdout.write("Bytes that represents the string object: ");
+    for (string_object) |char| {
+        try stdout.print("{X} ", .{char});
     }
     try stdout.print("\n", .{});
-    try stdout.flush();
-    
+    try stdout.flush(); // Bytes that represents the string object: C8 BA
 }
