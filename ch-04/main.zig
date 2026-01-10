@@ -67,7 +67,7 @@ const Base64 = struct {
         while (i < 64) : (i += 1) {
             if (self._char_at(i) == char)
                 break;
-            output_index += i;
+            output_index += 1;
         }
         return output_index;
     }
@@ -147,11 +147,27 @@ pub fn main() !void {
     // try stdout.print("{d}\n", .{ bits & 0b00110000 });
     // try stdout.flush();
     //
-    var gpa = std.heap.DebugAllocator(.{}){};
-    const allocator = gpa.allocator();
+    // var gpa = std.heap.DebugAllocator(.{}){};
+    // const allocator = gpa.allocator();
+
+    // const base64 = Base64.init();
+    // const input = "Hi";
+    // try stdout.print("{any}\n", .{base64.encode(allocator, input)});
+    // try stdout.flush();
+
+    var memory_buffer: [1000]u8 = undefined;
+    var fba = std.heap.FixedBufferAllocator.init(&memory_buffer);
+    const allocator = fba.allocator();
+
+    const text = "Testing some more stuff";
+    const etext = "VGVzdGluZyBzb21lIG1vcmUgc3R1ZmY=";
 
     const base64 = Base64.init();
-    const input = "Hi";
-    try stdout.print("{any}\n", .{base64.encode(allocator, input)});
+
+    const encoded_text = try base64.encode(allocator, text);
+    const decoded_text = try base64.decode(allocator, etext);
+
+    try stdout.print("Encoded text: {s}\n", .{encoded_text});
+    try stdout.print("Decoded text: {s}\n", .{decoded_text});
     try stdout.flush();
 }
