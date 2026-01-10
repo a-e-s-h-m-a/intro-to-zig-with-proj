@@ -53,7 +53,12 @@ pub fn main() !void {
     // const base64 = Base64.init();
     // std.debug.print("Character at index: 28 is {c}\n", .{ base64._char_at(28) });
     
-    const input = "Hi";
-    try stdout.print("{d}\n", .{ input[0] >> 2 });
+    // // bit shifting
+    // const input = "Hi";
+    // try stdout.print("{d}\n", .{ input[0] >> 2 });
+    // try stdout.flush();
+    
+    const bits = 0b10010111;
+    try stdout.print("{d}\n", .{ bits & 0b00110000 });
     try stdout.flush();
 }
