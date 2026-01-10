@@ -67,6 +67,22 @@ const Base64 = struct {
         
         return out;
     }
+    
+    pub fn _char_index(self: Base64, char: u8) u8 {
+        if (char == '=') {
+            return 64;
+        }
+        
+        var i: u8 = 0;
+        var output_index: u8 = 0;
+        
+        while (i < 64) : (i += 1) {
+            if(self._char_at(i) == char)
+                break;
+            output_index += i;
+        }
+        return output_index;
+    }
 };
 
 fn _calc_encode_lengh(input: []const u8) !usize {
