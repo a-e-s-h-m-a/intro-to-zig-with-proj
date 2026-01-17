@@ -1,4 +1,5 @@
 const std = @import("std");
+const Request = @import("request.zig");
 const Server = @import("server.zig").Server;
 
 pub fn main() !void {
@@ -12,4 +13,10 @@ pub fn main() !void {
     var listening = try server.listen();
     const connection = try listening.accept(io);
     defer connection.close(io);
+    
+    var request_buffer: [1000]u8 = undefined;
+    @memset(request_buffer[0..], 0);
+    try Request.read_request(io, connection, request_buffer[0..]);
+    
+    std.debug.print("{s}\n", .{request_buffer});
 }
