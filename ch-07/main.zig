@@ -18,5 +18,6 @@ pub fn main() !void {
     @memset(request_buffer[0..], 0);
     try Request.read_request(io, connection, request_buffer[0..]);
     
-    std.debug.print("{s}\n", .{request_buffer});
+    const request = Request.parse_request(request_buffer[0..]);
+    std.debug.print("{any}\n", .{request});
 }

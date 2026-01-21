@@ -68,8 +68,8 @@ pub fn parse_request(text: []u8) Request {
     const index_line = std.mem.indexOfScalar(u8, text, '\n') orelse text.len;
     var iterator = std.mem.splitScalar(u8, text[0..index_line], ' ');
     const method = try Method.init(iterator.next().?);
-    const uri = iterator.next();
-    const version = iterator.next();
+    const uri = iterator.next().?;
+    const version = iterator.next().?;
     const request = Request.init(method, version, uri);
     return request;
 }
