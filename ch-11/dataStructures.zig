@@ -19,16 +19,24 @@ pub fn main() !void {
 
     // std.debug.print("{s}\n", .{buffer.items});
     // 
-    for (0..10) |i| {
-        const index: u8 = @intCast(i);
-        try buffer.append(allocator, index);
+    // for (0..10) |i| {
+    //     const index: u8 = @intCast(i);
+    //     try buffer.append(allocator, index);
+    // }
+    
+    // std.debug.print("{any}\n", .{buffer.items});
+    
+    // _ = buffer.orderedRemove(3);
+    // _ = buffer.orderedRemove(3);
+    
+    // std.debug.print("{any}\n", .{buffer.items});
+    // std.debug.print("{any}\n", .{buffer.items.len});
+    // 
+    try buffer.appendSlice(allocator, "My name");
+    try buffer.insert(allocator, 3, '3');
+    try buffer.insertSlice(allocator, 5, "Malith");
+    
+    for(buffer.items) |char| {
+        std.debug.print("{c}", .{char});
     }
-    
-    std.debug.print("{any}\n", .{buffer.items});
-    
-    _ = buffer.orderedRemove(3);
-    _ = buffer.orderedRemove(3);
-    
-    std.debug.print("{any}\n", .{buffer.items});
-    std.debug.print("{any}\n", .{buffer.items.len});
 }
