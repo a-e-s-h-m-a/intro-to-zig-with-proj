@@ -27,5 +27,20 @@ pub fn main() !void {
     while (it.next()) |kv| {
         std.debug.print("Key: {d} ", .{kv.key_ptr.*});
         std.debug.print("Val: {d}\n", .{kv.value_ptr.*});
+        std.debug.print("\n", .{});
+    }
+    
+    var ages = std.StringHashMap(u8).init(allocator);
+    defer ages.deinit();
+    
+    try ages.put("Pedro", 25);
+    try ages.put("Messi", 23);
+    try ages.put("Villa", 22);
+    
+    var itt = ages.iterator();
+    while (itt.next()) |kv| {
+        std.debug.print("Key: {s},", .{kv.key_ptr.*});
+        std.debug.print("Value: {d}\n",.{kv.value_ptr.*});
+        std.debug.print("\n", .{});
     }
 }
