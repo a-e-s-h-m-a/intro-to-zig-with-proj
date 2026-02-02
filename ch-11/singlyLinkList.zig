@@ -20,4 +20,9 @@ pub fn main() !void {
     
     std.debug.print("Number of nodes are: {d}\n", .{ list.len() });
     
+    var it = list.first;
+    while (it) |node| : (it = node.next) {
+        const l: *NodeU32 = @fieldParentPtr("node", node);
+        std.debug.print("Current value is: {}\n", .{l.data});
+    }
 }

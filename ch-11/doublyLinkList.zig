@@ -19,4 +19,10 @@ pub fn main() !void {
     list.append(&two.node); // {1, 5, 3, 2}
     
     std.debug.print("Number of nodes: {d}\n", .{ list.len() });
+    
+    var it = list.first;
+    while (it) |node|: (it = node.next) {
+        const l: *NodeU32 = @fieldParentPtr("node", node);
+        std.debug.print("Current value is: {}\n", .{l.data});
+    }
 }
