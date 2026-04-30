@@ -1,4 +1,10 @@
 const std = @import("std");
+const expect = @import("std").testing.expect;
+
+fn fibonacci(index: u32) u32 {
+    if (index < 2) return index;
+    return fibonacci(index - 1) + fibonacci(index - 2);
+}
 
 fn twice(comptime num: u32) u32 {
     return num * 2;
@@ -27,4 +33,12 @@ pub fn main(init: std.process.Init) !void {
 
 test "twice" {
     _ = twice(5467);
+}
+
+test "fibonacci" {
+    // test fibonacci at run-time
+    try expect(fibonacci(7) == 13);
+
+    // test fibonacci at comptime
+    try comptime expect(fibonacci(7) == 13);
 }
