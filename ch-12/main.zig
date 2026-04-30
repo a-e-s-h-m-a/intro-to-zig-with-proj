@@ -42,3 +42,14 @@ test "fibonacci" {
     // test fibonacci at comptime
     try comptime expect(fibonacci(7) == 13);
 }
+
+test "fibonacci in a block" {
+    const x = comptime blk: {
+        const n1 = 5;
+        const n2 = 2;
+        const n3 = n1 + n2;
+        try expect(fibonacci(n3) == 13);
+        break :blk n3;
+    };
+    _ = x;
+}
