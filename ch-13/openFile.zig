@@ -7,4 +7,11 @@ pub fn main(init: std.process.Init) !void {
 
     const length = try file.length(init.io);
     _ = try file.writePositionalAll(init.io, "Some random text.\n", length);
+
+    //Delete file
+    //_ = try cwd.deleteFile(init.io, "fooDelete.txt");
+
+    //Copy file
+    _ = try cwd.copyFile("foo.txt", cwd, 
+        "fooDelete.txt", init.io, .{});
 }
