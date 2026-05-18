@@ -10,7 +10,7 @@ pub fn main(init: std.process.Init) !void {
     }
 
     //create directories
-    try cwd.createDir(init.io, "testSingleDir", .default_dir);
+    //try cwd.createDir(init.io, "testSingleDir", .default_dir);
     try cwd.createDirPath(init.io, "testSingleDir/test1/test2/");
 
     // Delete dir
